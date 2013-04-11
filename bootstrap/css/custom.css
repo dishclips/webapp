@@ -262,7 +262,8 @@ li.twitter { background-image:url("http://koala.dishclips.com/application_images
 
 .dish_box .dish_thumbnail{
 	width: 100%;
-	max-height: 225px;
+	height: 135px;
+	width: 280px;
 	-webkit-border-top-left-radius: 5px;
 	-webkit-border-top-right-radius: 5px;
 	-moz-border-radius-topleft: 5px;
