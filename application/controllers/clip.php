@@ -38,6 +38,7 @@ class Clip extends CI_Controller {
 			
 			$data['clips_list'] = $dish_data['clips'];
 			$data['dish_rating'] = intval($dish_data['rating']);
+			$data['dish_id'] = $dish_id;
 			$data['clip_url'] = $clip_data['url'];
 			$data['clip_thumbnail'] = $clip_data['thumbnail_url'];
 			$data['restaurant_name'] = !empty($clip_data['restaurant_name']) ? $clip_data['restaurant_name'] : "";
@@ -50,8 +51,7 @@ class Clip extends CI_Controller {
 			$data['num_comments'] = $clip_data['num_comments'];
 			$data['create_time'] = RelevantTime($clip_data['create_time']);
 			
-			//begin comments data
-			$dish_id = $dish_data['unique_id'];
+			//begin comments data'];
 			$comments_api_call = json_decode(file_get_contents(API_URL . "getDishComments?dish_id=$dish_id"), true);
 			$data['comments_list'] = $comments_api_call['comments'];
 			

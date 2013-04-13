@@ -17,17 +17,8 @@
     <span class="row-fluid">
 	<span class="span8 offset2" id="my_content_span">
 		<div id="clip_card">
-			<div id="clip_title">
-				<h1 style="font-size: 76px; line-height: 1.2;"><?= $dish_name?></h1>
-				at <a href="<?= site_url('restaurant/'. $restaurant_id);?>"><?= $restaurant_name?></a> in <span style="font-weight: bold; color: #636363;"><?= $restaurant_city?>, <?= $restaurant_state; ?></span>
-			</div>
-				
-			<div id="clip_uploader_info">
-				<img   src="<?= $user_image_url?>" class="user_image"/>
-				<a href="<?= site_url('user/' . $user_id);?>"><?= $user_name ?></a>
-				<br>
-				Uploaded <?= $create_time?>
-			</div>
+			<h1 style="font-size: 76px; line-height: 1.2;"><?= $dish_name?></h1>
+		    	at <a href="<?= site_url('restaurant/'. $restaurant_id);?>"><?= $restaurant_name?></a> in <span style="font-weight: bold; color: #636363;"><?= $restaurant_city?>, <?= $restaurant_state; ?></span>
 		</div>
 			
 		<table class="table" id="restaurant_info">
@@ -71,6 +62,11 @@
 								
 								<td style="width: 15%; text-align: center; vertical-align: top;">
 									 <div>
+									    <img   src="<?= $user_image_url?>" class="user_image"/>
+									    <a href="<?= site_url('user/' . $user_id);?>"><?= $user_name ?></a>
+									    <br>
+										<small>uploaded <?= $create_time?></small>
+										<br><br<br><br>
 						<div class="heart"><?= $dish_rating; ?></div>
 						<br>
 						<span style="font-weight: bold; color: #bd8c94;">Average Rating</span>
@@ -133,7 +129,7 @@
 						    <h4>Discover other dishes from <?= $restaurant_name; ?>:</h4>
 						</td>
 					    </thead>
-						<? _print_dishes($dishes_list, 'clip', $restaurant_id); ?>
+						<? _print_dishes($dishes_list, 'clip', $restaurant_id, true, $dish_id); ?>
 					</table>
 			    	    </td>
 				</tr>

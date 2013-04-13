@@ -30,29 +30,39 @@ class Restaurant extends CI_Controller {
 			
 			//print_r($restaurant_api_call);
 			
-			$name = $restaurant_data['name'];
-			$city = !empty($restaurant_data['city']) ? $restaurant_data['city'] : "";
-			$state = !empty($restaurant_data['state']) ? ", " .$restaurant_data['state'] : "";
-			
-			$data['valid_restaurant'] = true;
-			$data['name'] = $restaurant_data['name'];
-			@$data['address'] = $restaurant_data['address1'] != $restaurant_data["address2"] ? $restaurant_data['address1'] . " " . $restaurant_data["address2"] : $restaurant_data['address1'];
-			$data['city'] = !empty($restaurant_data['city']) ? $restaurant_data['city'] : "";
-			$data['state'] = !empty($restaurant_data['state']) ? $restaurant_data['state'] : "";
-			$data['zip'] = !empty($restaurant_data['zip']) ? $restaurant_data['zip'] : "";
-			$data['phone'] = !empty($restaurant_data['phone']) ? $restaurant_data['phone'] : "";
-			$url = !empty($restaurant_data['url']) ? $restaurant_data['url'] : false;
-			$data['url'] = preg_match("#https?://#", $url) === 0 && $url != false ? 'http://'. $url : $url;
-			$data['lon'] = $restaurant_data['lon'];
-			$data['lat'] = $restaurant_data['lat'];
+			$isKitchen = $restaurant_data['my_own_kitchen'];
 			$data['num_clips'] = $restaurant_data['num_clips'];
-			
 			$data['dishes_list'] = $restaurant_data['dishes'];
 			
+			$name = $restaurant_data['name'];
+			$data['name'] = $name;
+			
+			if(!$isKitchen){
+				$city = !empty($restaurant_data['city']) ? $restaurant_data['city'] : "";
+				$state = !empty($restaurant_data['state']) ? ", " .$restaurant_data['state'] : "";
+				
+				$data['valid_restaurant'] = true;
+				$data['name'] = $restaurant_data['name'];
+				@$data['address'] = $restaurant_data['address1'] != $restaurant_data["address2"] ? $restaurant_data['address1'] . " " . $restaurant_data["address2"] : $restaurant_data['address1'];
+				$data['city'] = !empty($restaurant_data['city']) ? $restaurant_data['city'] : "";
+				$data['state'] = !empty($restaurant_data['state']) ? $restaurant_data['state'] : "";
+				$data['zip'] = !empty($restaurant_data['zip']) ? $restaurant_data['zip'] : "";
+				$data['phone'] = !empty($restaurant_data['phone']) ? $restaurant_data['phone'] : "";
+				$url = !empty($restaurant_data['url']) ? $restaurant_data['url'] : false;
+				$data['url'] = preg_match("#https?://#", $url) === 0 && $url != false ? 'http://'. $url : $url;
+				$data['lon'] = $restaurant_data['lon'];
+				$data['lat'] = $restaurant_data['lat'];
+				
+				$data['view'] = "restaurant";
+				$this->template->set('title', "DishClips &raquo; " . $name . " in " . $city . $state);
+				$this->template->load('template', 'restaurant', $data);
+			}
+			else{
+				$user_id = $restaurant_data['first_clipped_id'];
+				redirect('/user/' . $user_id . "#Kitchen", 'refresh');
+			}
+			
 			//print_r($restaurant_data);
-			$data['view'] = "restaurant";
-			$this->template->set('title', "DishClips &raquo; " . $name . " in " . $city . $state);
-			$this->template->load('template', 'restaurant', $data);
 			
 			
 			if (!empty($_POST)){

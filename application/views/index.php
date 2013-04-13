@@ -11,14 +11,15 @@
 							<script type="text/javascript">getAddress("#address_hidden")</script>
 						</form>
 				</li></ul>
-
-		<h1 class="clips_headers"> Latest Clips </h1> 
-		<div class="text show-more-height">
-		     <table class="table borderless">
-		    <? _print_user_clips($latest_clips);?>    
-		    </table>     
-		</div>
-		<a class="load"><button class="show-more">Check Out More of the Latest!</button></a>
+				
+				<h1 class="clips_headers"> Latest Clips </h1>
+				
+				<div class="text show-more-height">
+				    <table class="table borderless">
+				    <? _print_user_clips($latest_clips, "latest");?>
+				    </table>
+				</div>
+				<a class="load"><button class="show-more">Check Out More of the Latest!</button></a>
 	</span>
     </span>
 </span>

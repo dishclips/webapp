@@ -5,7 +5,7 @@
 	
 	<link href="<?= site_url('bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
 	<link href="<?= site_url('bootstrap/css/font-awesome.min.css');?>" rel="stylesheet">
-	<link href="<?= site_url('bootstrap/css/custom.css');?>" rel="stylesheet">
+	<link href="<?= site_url('/bootstrap/css/custom.css');?>" rel="stylesheet">
 	
 	<script src="<?= site_url('bootstrap/docs/assets/js/jquery-1.7.1.min.js');?>"></script> <!--jQuery-->	
 	<script src="<?= site_url('bootstrap/js/bootstrap-modal.js')?>"></script>
