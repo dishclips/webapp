@@ -10,6 +10,7 @@ class Restaurant extends CI_Controller {
 		$this->load->helper('MY_date');
 		$this->load->helper('url');
 		$this->load->helper('dishbox');
+		$this->load->helper('modals');
 		
 		$valid_restaurant = true;
 		$restaurant_id = $this->uri->segment(2);

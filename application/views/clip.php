@@ -31,7 +31,7 @@
 									
 									<br><br>
 									
-									<a href="https://twitter.com/share" class="twitter-share-button" data-text="<?php echo $dish_name?> from <?php echo $restaurant_name?> " data-url="http://www.dishclips.com/clip/<?php echo $clip_id; ?>" data-via="DishClips" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a>
+									<a href="https://twitter.com/share" class="twitter-share-button" data-text="<?php echo $tweet_msg;?>" data-url="<?php echo $short_url; ?>" data-via="DishClips" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a>
 									<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 									
 									<br><br>

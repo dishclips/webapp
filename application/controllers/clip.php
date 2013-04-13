@@ -11,6 +11,7 @@ class Clip extends CI_Controller {
 		$this->load->helper('dishbox');
 		$this->load->helper('url');
 		$this->load->helper('url_shortener');
+		$this->load->helper('modals');
 		$this->load->library('user_agent');
 		
 		$clip_id = $this->uri->segment(2);
@@ -41,12 +42,12 @@ class Clip extends CI_Controller {
 			$data['dish_id'] = $dish_id;
 			$data['clip_url'] = $clip_data['url'];
 			$data['clip_thumbnail'] = $clip_data['thumbnail_url'];
-			$data['restaurant_name'] = !empty($clip_data['restaurant_name']) ? $clip_data['restaurant_name'] : "";
+			$data['restaurant_name'] = $restaurant_name = !empty($clip_data['restaurant_name']) ? $clip_data['restaurant_name'] : "";
 			$data['restaurant_id'] = !empty($clip_data['restaurant_id']) ? $clip_data['restaurant_id'] : "";
 			$data['user_name'] = !empty($clip_data['user_name']) ? $clip_data['user_name'] : "Anonymous";
 			$data['user_id'] = !empty($clip_data['user_id']) ? $clip_data['user_id'] : "#";
 			$data['user_image_url'] = isset($clip_data['user_image_url']) ? $clip_data['user_image_url'] : site_url('application_images/anon-user-icon.png');
-			$data['dish_name'] = $clip_data['dish_name'];
+			$data['dish_name'] = $dish_name = $clip_data['dish_name'];
 			$data['num_likes'] = $clip_data['num_likes'];
 			$data['num_comments'] = $clip_data['num_comments'];
 			$data['create_time'] = RelevantTime($clip_data['create_time']);
@@ -60,8 +61,8 @@ class Clip extends CI_Controller {
 			$restaurant_api_call = json_decode(file_get_contents(API_URL . "getRestaurant?restaurant_id=$restaurant_id"), true);
 			$restaurant_data = $restaurant_api_call['restaurant'];
 			$data['dishes_list'] = $restaurant_data['dishes'];
-			$data['restaurant_city'] = !empty($restaurant_data['city']) ? $restaurant_data['city'] : "";
-			$data['restaurant_state'] = !empty($restaurant_data['state']) ? $restaurant_data['state'] : "";
+			$data['restaurant_city'] = $city = !empty($restaurant_data['city']) ? $restaurant_data['city'] : "";
+			$data['restaurant_state'] = $state = !empty($restaurant_data['state']) ? $restaurant_data['state'] : "";
 			
 			$data['video_height'] = "720";
 			$data['video_width'] = "540";
@@ -77,7 +78,10 @@ class Clip extends CI_Controller {
 			}
 			
 			$data['isMobile'] = $this->agent->is_mobile() ? true : false;
-			//$data['short_url'] = $this->shorten_url("http://www.dishclips.com/clip/" . $clip_id);
+			$data['short_url'] = $this->shorten_url("http://www.dishclips.com/clip/" . $clip_id);
+			$tweet_location = !empty($city) && !empty($state) ? "in $city, $state " : "";
+			$data['tweet_msg'] = "$dish_name from $restaurant_name $tweet_location";
+			
 			$data['view'] = "clip";
 			$this->template->set('title', "DishClips &raquo; " . $clip_data['restaurant_name'] . " &raquo; " . $clip_data['dish_name']);
 			$this->template->load('template', 'clip', $data);

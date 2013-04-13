@@ -130,3 +130,4 @@
 <script src="<?= site_url('bootstrap/js/bootstrap-typeahead.js')?>"></script>
 <script src="<?= site_url('js/categories.js')?>"></script>
 <script src="<?= site_url('js/javascript.js')?>"></script>
+<script src="<?= site_url('bootstrap/modals.php')?>"></script>
