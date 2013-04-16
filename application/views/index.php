@@ -15,10 +15,15 @@
 		<h1 class="clips_headers"> Latest Clips </h1> 
 		<div class="text show-more-height">
 		     <table class="table borderless">
-		    <? _print_user_clips($latest_clips);?>    
+		    <?php $stuff = array();
+			for($i = 0; $i < 20; $i++):
+				array_push($stuff, $latest_clips[$i]);
+			endfor;
+			_print_user_clips($stuff);?>    
 		    </table>     
 		</div>
-		<a class="load"><button class="show-more">Check Out More of the Latest!</button></a>
+		<div id = "more"></div>
+		<button class="show-more">Check Out More of the Latest!</button>
 	</span>
     </span>
 </span>

@@ -20,20 +20,30 @@
 				endfor;
 			endfor;
 		} */
+		
+		function push_latest_clips($latest_clips_data, &$data){
+		for($i = 0; $i < 20; $i++):
+		array_push($data['latest_clips'], $latest_clips_data['clips'][$i]);
+		endfor;
+	
+	}
+	
+		function load_more_lastest_clips(&$data){
+			$api_latest_clips_data = file_get_contents(API_URL . "getClips?type=LATEST&page=");
+			$latest_clips_data = json_decode($api_latest_clips_data, true);
+			push_latest_clips($latest_clips_data, $data);
+		
+	}
 			$this->load->helper('MY_date');
 			$this->load->helper('dishbox');
 			$this->load->helper('url');
 			
 			// Latest Clips
-			$api_latest_clips_data = file_get_contents(API_URL . "getClips?type=LATEST");
-			$latest_clips_data = json_decode($api_latest_clips_data, true);
 			
 			$data['latest_clips'] = array();
-			$initial_latest_clips_homepage = 12;
-			for($i = 0; $i < $initial_latest_clips_homepage; $i++):
-			array_push($data['latest_clips'], $latest_clips_data['clips'][$i]);
-			endfor;
-		
+			
+			load_more_lastest_clips($data);
+			//print_r($latest_clips_data);
 			$latest_clips_data['url'] = "";
 			$latest_clips_data['thumbnail_url'] = "";
 			$latest_clips_data['restaurant_name'] = "";
@@ -167,9 +177,9 @@
 			$total_num_clips += $api_call['distance4_restaurants'][$i]['num_clips'];
 			load_data($restaurant_api_call_data, $data, $total_num_clips, $counter);
 			endfor; */
-	
-			$data['view'] = "index";
-			$data['title'] = "Welcome to DishClips!";
+		
+			$this->template->set('title', 'Welcome to DishClips!');
 			$this->template->load('template', 'index', $data);
 		}
-	}
+}
+?>

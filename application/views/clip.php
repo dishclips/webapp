@@ -1,5 +1,5 @@
-<meta name="twitter:image" content="<?= $clip_thumbnail?>">
-<meta name="twitter:title" content="DishClips: <?= $dish_name?> at <?= $restaurant_name?>">
+<meta name="twitter:image" content="<?php echo $clip_thumbnail?>">
+<meta name="twitter:title" content="DishClips: <?php echo $dish_name?> at <?php echo $restaurant_name?>">
 <meta name="twitter:description" content="Check out this DishClip">
 
 	<!--facebook like button-->
@@ -57,21 +57,21 @@
 								</td>
 								
 								<td style="text-align: center; width: 70%;">
-									<? if($isMobile):?>
+									<?php if($isMobile):?>
 										<div style="margin-top:30px;"><center><video id="DishClips" class="video-js vjs-default-skin" controls width="480" height="360" poster="<?= $clip_thumbnail;?>" preload="auto" data-setup="{}">  <source type="video/mp4" src="<?= $clip_url;?>"></video></center>
-									<? else:?>
+									<?php else:?>
 										<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="480" height="360">
 											<param name="movie" value="http://flash.webestools.com/flv_player/v1_27.swf"><param name="quality" value="high"><param name="bgcolor" value="#000000">
 											<param name="allowScriptAccess" value="always"><param name="allowFullScreen" value="true"><param name="wmode" value="transparent">
 											<param name="flashvars" value="fichier=<?= $clip_url?>&amp;apercu=<?= $clip_thumbnail?>">
 											<embed src="http://flash.webestools.com/flv_player/v1_27.swf" width="480" height="360" quality="high" bgcolor="#000000" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" flashvars="fichier=<?= $clip_url?>&apercu=<?= $clip_thumbnail?>" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer">
 										</object>
-									<? endif;?>
+									<?php endif;?>
 								</td>
 								
 								<td style="width: 15%; text-align: center; vertical-align: top;">
 									 <div>
-						<div class="heart"><?= $dish_rating; ?></div>
+						<div class="heart"><?php echo $dish_rating; ?></div>
 						<br>
 						<span style="font-weight: bold; color: #bd8c94;">Average Rating</span>
 					    </div>
@@ -89,40 +89,40 @@
 				
 				<tr>
 	        			<td align="center" colspan="3" style="display: none;">
-						<? foreach($comments_list as $comment): ?>
+						<?php foreach($comments_list as $comment): ?>
 						    <table class="comment_box" style="bac/jwplayer/ground: #f7f7f7; border: 1px  dotted;">
 							<tr>
 							    <td style="width: 10%; text-align: center;">
-								<img src="<?= $comment['image_url']?>" style='width: 65px; height: 65px;' />
+								<img src="<?php echo $comment['image_url']?>" style='width: 65px; height: 65px;' />
 								<br>
-								<?= $comment['name']; ?>
+								<?php echo $comment['name']; ?>
 							    </td>
 							    
 							    <td>
-								<?= $comment['message']; ?>
+								<?php echo $comment['message']; ?>
 							    </td>
 							</tr>
 						    </table>
-						<? endforeach; ?>
+						<?php endforeach; ?>
 					</td>
 				</tr>
 				
 				<!--other clips of same dish-->
-				<? if(count($clips_list) > 1): ?>
+				<?php if(count($clips_list) > 1): ?>
 				<tr>
 				    <td colspan="3">
 					<table class="borderless">
 					    <tr>
 						<td style="text-align: left;">
-						    <h5>Other clips of <?= $dish_name; ?>:</h5>
-						    <? _print_clips($clips_list, $clip_id); ?>
+						    <h5>Other clips of <?php echo $dish_name; ?>:</h5>
+						    <?php _print_clips($clips_list, $clip_id); ?>
 						</td>
 					    
 					    </tr>
 					</table>
 			    	    </td>
 				</tr>
-				<? endif;?>
+				<?php endif;?>
 				
 				<!--other dishes from restaurant-->
 				<tr>
@@ -130,10 +130,10 @@
 					<table class="borderless">
 					    <thead>
 						<td colspan="4">
-						    <h4>Discover other dishes from <?= $restaurant_name; ?>:</h4>
+						    <h4>Discover other dishes from <?php echo $restaurant_name; ?>:</h4>
 						</td>
 					    </thead>
-						<? _print_dishes($dishes_list, 'clip', $restaurant_id); ?>
+						<?php _print_dishes($dishes_list, 'clip', $restaurant_id); ?>
 					</table>
 			    	    </td>
 				</tr>

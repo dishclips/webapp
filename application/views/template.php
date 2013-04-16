@@ -3,24 +3,24 @@
 <head>
 	<title><?= $title?></title>	
 	
-	<link href="<?= site_url('bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
-	<link href="<?= site_url('bootstrap/css/font-awesome.min.css');?>" rel="stylesheet">
-	<link href="<?= site_url('bootstrap/css/custom.css');?>" rel="stylesheet">
+	<link href="<?php echo site_url('bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
+	<link href="<?php echo site_url('bootstrap/css/font-awesome.min.css');?>" rel="stylesheet">
+	<link href="<?php echo site_url('bootstrap/css/custom.css');?>" rel="stylesheet">
 	
-	<script src="<?= site_url('bootstrap/docs/assets/js/jquery-1.7.1.min.js');?>"></script> <!--jQuery-->	
-	<script src="<?= site_url('bootstrap/js/bootstrap-modal.js')?>"></script>
+	<script src="<?php echo site_url('bootstrap/docs/assets/js/jquery-1.7.1.min.js');?>"></script> <!--jQuery-->	
+	<script src="<?php echo site_url('bootstrap/js/bootstrap-modal.js')?>"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-	<script src="<?= site_url('js/javascript.js')?>"></script>
-	<? if(isset($view)):?>
-		<? if($view == 'restaurant'): ?>
+	<script src="<?php echo site_url('js/javascript.js')?>"></script>
+	<?php if(isset($view)):?>
+		<?php if($view == 'restaurant'): ?>
 		<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"></script>
-		<? endif; ?>
-		<? if($view == 'clip'): ?>
+		<?php endif; ?>
+		<?php if($view == 'clip'): ?>
 		<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
 		<script type="text/javascript" src="/jwplayer/jwplayer.js"></script>
 		<script type="text/javascript">jwplayer.key="ABCDEFGHIJKLMOPQ";</script>
-		<? endif;?>
-	<? endif;?>
+		<?php endif;?>
+	<?php endif;?>
 </head>
 
 <body>
@@ -28,32 +28,32 @@
 		<div class="navbar-inner" id="navbar">
 			<ul class="nav" style="margin-left: 16%;">
 				<li>
-					<a href="<?= site_url('');?>"><img src="<?= site_url('application_images/DishClipsLogo.png'); ?>" class="logo" ></a>
+					<a href="<?php echo site_url('');?>"><img src="<?php echo site_url('application_images/DishClipsLogo.png'); ?>" class="logo" ></a>
 				</li>
 				
 				<li>
-					<a href="<?= site_url('');?>"><img src="<?= site_url('application_images/DishClipsLogoText.png');?>" class="logo_text" alt="DishClips"></a>
+					<a href="<?php echo site_url('');?>"><img src="<?php echo site_url('application_images/DishClipsLogoText.png');?>" class="logo_text" alt="DishClips"></a>
 				</li>
 			</ul>
 		
 			<ul class="nav pull-right" style="margin-right: 16%;">
 				
 				<li>
-						<form method="get" action="<?= site_url('search/');?>" >
+						<form method="get" action="<?php echo site_url('search/');?>" >
 							<input type="text" id="navbar_search_box" name="q" placeholder="Search Restaurants/Dishes.." class="input-medium search-query" autpcomplete="off" data-provide="typeahead" data-items="4" autocomplete="off"/>
-							<? if(isset($_COOKIE['address'])): ?>
-								<input type="hidden" name="loc" id="address_hidden" value="<?= $_COOKIE['address']?>">
-							<? else: ?>
+							<?php if(isset($_COOKIE['address'])): ?>
+								<input type="hidden" name="loc" id="address_hidden" value="<?php echo $_COOKIE['address']?>">
+							<?php else: ?>
 								<input type="hidden" name="loc" id="address_hidden">
 								<script type="text/javascript">getAddress("#address_hidden")</script>
-							<? endif;?>
+							<?php endif;?>
 						</form>
 				</li>
 			</ul>
 		</div>
 	</div>
 
-	<div id="contents"><?= $contents ?></div>
+	<div id="contents"><?php echo $contents ?></div>
 	
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
@@ -119,14 +119,56 @@
     });
 </script>
 
-<script type="text/javascript">$(document).ready(function(){
-			$(".load").click(function(){
-			$('.load').load("moreclips");
+<script type="text/javascript"> $(document).ready(function(){
+			var number = 1;
+			$(".show-more").click(function(){
+			$.get("moreclips", function(data){
 			
+			switch(number){
+				case 1:
+					number = "#one";
+					break;
+				case 2:
+					number = "#two";
+					break;
+				case 3:
+					number = "#three";
+					break;
+				case 4:
+					number = "#four";
+					break;
+				default: 
+					number = 0;
+					break;
+			}
+			
+				var posts = $(data).filter(number);
+				$('#more').append(posts);});
+					
+				switch(number){
+				case "#one":
+					number = 1;
+					break;
+				case "#two":
+					number = 2;
+					break;
+				case "#three":
+					number = 3;
+					break;
+				case "#four":
+					number = 4;
+					break;
+				default: 
+					number = 0;
+					break;
+			}	
+					number++;
+					if(number == 4)
+						$('.show-more').hide();
 			})});
 
 </script>
 
-<script src="<?= site_url('bootstrap/js/bootstrap-typeahead.js')?>"></script>
-<script src="<?= site_url('js/categories.js')?>"></script>
-<script src="<?= site_url('js/javascript.js')?>"></script>
+<script src="<?php echo site_url('bootstrap/js/bootstrap-typeahead.js')?>"></script>
+<script src="<?php echo site_url('js/categories.js')?>"></script>
+<script src="<?php echo site_url('js/javascript.js')?>"></script>

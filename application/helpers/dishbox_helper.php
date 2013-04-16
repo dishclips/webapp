@@ -9,17 +9,17 @@ function _print_clips($list, $current_clip_id){
 		if($clip['unique_id'] == $current_clip_id) continue; //don't show current clip again
 	?>
 	<div class="clip_box">
-		<a href="<?= site_url('clip/' . $clip['unique_id']);?>">
-			<img class="img-rounded" style="width: 200px; height: 160px;" src="<?= $clip['thumbnail_url'];?>"/>
+		<a href="<?php echo site_url('clip/' . $clip['unique_id']);?>">
+			<img class="img-rounded" style="width: 200px; height: 160px;" src="<?php echo $clip['thumbnail_url'];?>"/>
 		</a>
 		<em>
 		<h6>
-		<img src="<?= $clip['user_image_url']?>" class="user_image" style="height: 25px; width: 25px;"/>
-		<a href="#"><?= $clip['user_name'];?></a></h6>
+		<img src="<?php echo $clip['user_image_url']?>" class="user_image" style="height: 25px; width: 25px;"/>
+		<a href="#"><?php echo $clip['user_name'];?></a></h6>
 		</em>
 	</div>
 
-<?		
+<?php		
 	$counter++;
 	endforeach;
 }
@@ -70,7 +70,7 @@ function _print_dishes($list, $page=false, $restaurant_id=0, $hidden=false){
 		
 		if($info['page'] == 'restaurant') _addNewDishBox($info['space_fill_up']);
 		else if($break) return;
-		else for($i=0; $i<$info['space_fill_up']+1; $i++): ?><td class="dish_box_td"></td><? endfor;
+		else for($i=0; $i<$info['space_fill_up']+1; $i++): ?><td class="dish_box_td"></td><?php endfor;
 	endif;
 
 }
@@ -100,7 +100,7 @@ function _print_user_clips($list){
 		if($info['counter'] % $info['perRow'] == 0){echo "<tr>";}	
 		
 		if($info['page'] == 'restaurant') _addNewDishBox($info['space_fill_up']);
-		else for($i=0; $i<$info['space_fill_up']; $i++): ?><td class="dish_box_td"></td><? endfor;
+		else for($i=0; $i<$info['space_fill_up']; $i++): ?><td class="dish_box_td"></td><?php endfor;
 		
 	endif;
 }
@@ -111,17 +111,17 @@ function _printHTML($info){
 	
 	if($info['page'] == 'clip' && $info['counter'] == 8 ){?>
 		<td colspan='4' style="text-align: right; height:30px;">
-			<a href="<? site_url('restaurant/' . 1);?>">Show more &rarr;</a>
+			<a href="<?php echo site_url('restaurant/' . 1);?>">Show more &rarr;</a>
 		</td>
-		<?return false;
+		<?php return false;
 	}
 		elseif(($info['counter'] % $info['perRow']) == 0){ echo "<tr>";}
 		?>
 			<td class="dish_box_td">
 					<div class="borderless dish_box">
 						<div>
-							<a href="<?= site_url('clip/' . $info['unique_id']);?>">
-								<img src="<?= $info['thumbnail'];?>"  class="dish_thumbnail" alt="<?= $info['dish_name'];?>"/>
+							<a href="<?php echo site_url('clip/' . $info['unique_id']);?>">
+								<img src="<?php echo $info['thumbnail'];?>"  class="dish_thumbnail" alt="<?php echo $info['dish_name'];?>"/>
 							</a>
 						</div>
 	
@@ -129,28 +129,28 @@ function _printHTML($info){
 						<div class="dish_info">
 							<div class="left_side">
 								<span class="food_name">
-									<a style="color: white;" href="<?= site_url('clip/' . $info['unique_id']);?>" title="<?= $info['dish_name'];?>">
-										<?= mb_strimwidth($info['dish_name'], 0, 25, "...");?>
+									<a style="color: white;" href="<?php echo site_url('clip/' . $info['unique_id']);?>" title="<?php echo $info['dish_name'];?>">
+										<?php echo mb_strimwidth($info['dish_name'], 0, 25, "...");?>
 									</a>
 									
 									<br>
 									<span style="color: #dddddd; font-size: 14px;">@
 														
-									<i style="color: #c6e17e;"><?= mb_strimwidth($info['restaurant_name'], 0, 25, "...");?></i>
+									<i style="color: #c6e17e;"><?php echo mb_strimwidth($info['restaurant_name'], 0, 25, "...");?></i>
 									</span>
 								</span>
 							</div>
 							
 							<div class="right_side">
-								<? if($info['page'] != false): ?><div class="heart_small"><?= $info['rating']; ?></div><?endif;?>
+								<?php if($info['page'] != false): ?><div class="heart_small"><?php echo $info['rating']; ?></div><?php endif;?>
 								<br>
-								<i style="font-size: 9px;"><?= $info['create_time'];?></i>
+								<i style="font-size: 9px;"><?php echo $info['create_time'];?></i>
 							</div>
 						</div>												
 					</div>
 			</td>
 	
-	<?		
+	<?php		
 		$info['counter']++;
 		if(($info['counter'] % $info['perRow']) == 0 and $info['counter'] > 0){ echo "</tr>";}
 		
@@ -162,11 +162,11 @@ function _addNewDishBox($space_fill_up) {
 	?>
 	<td class="dish_box_td">
 		<div class="hidden" data-toggle="modal" href="#AddNewDish">
-			<img src="<?= site_url("application_images/plus-icon.png")?>" />
+			<img src="<?php echo site_url("application_images/plus-icon.png")?>" />
 			<h6>Add a New Dish</h6>
 		</div>
 	</td>
-	<?
-	for($i=0; $i<$space_fill_up; $i++): ?><td></td><? endfor;
+	<?php
+	for($i=0; $i<$space_fill_up; $i++): ?><td></td><?php endfor;
 }
 ?>

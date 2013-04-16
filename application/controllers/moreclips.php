@@ -1,20 +1,42 @@
 <?php
-
 class Moreclips extends CI_Controller {
 
 	public function index()
 	{
+	
+	function push_latest_clips($latest_clips_data, &$data){
+		for($i = 0; $i < count($latest_clips_data['clips']); $i++):
+		array_push($data['latest_clips'], $latest_clips_data['clips'][$i]);
+		endfor;
+	
+	}
+	
+	function load_more_lastest_clips(&$data){
+		for($j = 1; $j < 4; $j++)
+		{
+			$api_latest_clips_data = file_get_contents(API_URL . "getClips?type=LATEST&page=". $j);
+			$latest_clips_data = json_decode($api_latest_clips_data, true);
+			push_latest_clips($latest_clips_data, $data);
+		}
+	}
+	
 		$this->load->helper('MY_date');
 		$this->load->helper('url');
 		$this->load->helper('dishbox');
 		
 		// Latest Clips
-			$api_latest_clips_data = file_get_contents("http://ec2-54-242-54-114.compute-1.amazonaws.com/dishclips/api/getClips?type=LATEST");
-			$latest_clips_data = json_decode($api_latest_clips_data, true);
+			$page_number = 0;
 			$data['latest_clips'] = array();
-			for($i = 12; $i < count($latest_clips_data['clips']); $i++):
+			
+			$api_latest_clips_data = file_get_contents(API_URL . "getClips?type=LATEST&page=". $page_number);
+			$latest_clips_data = json_decode($api_latest_clips_data, true);
+			
+			for($i = 20; $i < count($latest_clips_data['clips']); $i++):
 			array_push($data['latest_clips'], $latest_clips_data['clips'][$i]);
 			endfor;
+			
+			load_more_lastest_clips($data);
+			
 			//$data['latest_clips'] = $latest_clips_data['clips'];
 			// print_r($latest_clips_data);
 			$latest_clips_data['url'] = "";
@@ -48,5 +70,5 @@ class Moreclips extends CI_Controller {
 		
 	}
 	
-}
+} 
 ?>

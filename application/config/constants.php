@@ -42,7 +42,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 |------
 */
 
-define('API_URL', 'http://apiv2.dishclips.com/dishclips/api/');
+define('API_URL', 'http://dishclipsv2-15169936.us-east-1.elb.amazonaws.com/dishclips/api/');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
