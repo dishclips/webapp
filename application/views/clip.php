@@ -17,17 +17,8 @@
     <span class="row-fluid">
 	<span class="span8 offset2" id="my_content_span">
 		<div id="clip_card">
-			<div id="clip_title">
-				<h1 style="font-size: 76px; line-height: 1.2;"><?= $dish_name?></h1>
-				at <a href="<?= site_url('restaurant/'. $restaurant_id);?>"><?= $restaurant_name?></a> in <span style="font-weight: bold; color: #636363;"><?= $restaurant_city?>, <?= $restaurant_state; ?></span>
-			</div>
-				
-			<div id="clip_uploader_info">
-				<img   src="<?= $user_image_url?>" class="user_image"/>
-				<a href="<?= site_url('user/' . $user_id);?>"><?= $user_name ?></a>
-				<br>
-				Uploaded <?= $create_time?>
-			</div>
+			<h1 style="font-size: 76px; line-height: 1.2;"><?= $dish_name?></h1>
+		    	at <a href="<?= site_url('restaurant/'. $restaurant_id);?>"><?= $restaurant_name?></a> in <span style="font-weight: bold; color: #636363;"><?= $restaurant_city?>, <?= $restaurant_state; ?></span>
 		</div>
 			
 		<table class="table" id="restaurant_info">
@@ -40,7 +31,7 @@
 									
 									<br><br>
 									
-									<a href="https://twitter.com/share" class="twitter-share-button" data-text="<?php echo $dish_name?> from <?php echo $restaurant_name?> " data-url="http://www.dishclips.com/clip/<?php echo $clip_id; ?>" data-via="DishClips" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a>
+									<a href="https://twitter.com/share" class="twitter-share-button" data-text="<?php echo $tweet_msg;?>" data-url="<?php echo $short_url; ?>" data-via="DishClips" data-lang="en" data-related="anywhereTheJavascriptAPI" data-count="vertical">Tweet</a>
 									<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 									
 									<br><br>
@@ -71,7 +62,16 @@
 								
 								<td style="width: 15%; text-align: center; vertical-align: top;">
 									 <div>
+<<<<<<< HEAD
 						<div class="heart"><?php echo $dish_rating; ?></div>
+=======
+									    <img   src="<?= $user_image_url?>" class="user_image"/>
+									    <a href="<?= site_url('user/' . $user_id);?>"><?= $user_name ?></a>
+									    <br>
+										<small>uploaded <?= $create_time?></small>
+										<br><br<br><br>
+						<div class="heart"><?= $dish_rating; ?></div>
+>>>>>>> 5ac900d0bcc4d9996b2ae96f5212299e9d734e74
 						<br>
 						<span style="font-weight: bold; color: #bd8c94;">Average Rating</span>
 					    </div>
@@ -133,7 +133,11 @@
 						    <h4>Discover other dishes from <?php echo $restaurant_name; ?>:</h4>
 						</td>
 					    </thead>
+<<<<<<< HEAD
 						<?php _print_dishes($dishes_list, 'clip', $restaurant_id); ?>
+=======
+						<? _print_dishes($dishes_list, 'clip', $restaurant_id, true, $dish_id); ?>
+>>>>>>> 5ac900d0bcc4d9996b2ae96f5212299e9d734e74
 					</table>
 			    	    </td>
 				</tr>

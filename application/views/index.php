@@ -11,6 +11,7 @@
 							<script type="text/javascript">getAddress("#address_hidden")</script>
 						</form>
 				</li></ul>
+<<<<<<< HEAD
 
 		<h1 class="clips_headers"> Latest Clips </h1> 
 		<div class="text show-more-height">
@@ -24,6 +25,17 @@
 		</div>
 		<div id = "more"></div>
 		<button class="show-more">Check Out More of the Latest!</button>
+=======
+				
+				<h1 class="clips_headers"> Latest Clips </h1>
+				
+				<div class="text show-more-height">
+				    <table class="table borderless">
+				    <? _print_user_clips($latest_clips, "latest");?>
+				    </table>
+				</div>
+				<a class="load"><button class="show-more">Check Out More of the Latest!</button></a>
+>>>>>>> 5ac900d0bcc4d9996b2ae96f5212299e9d734e74
 	</span>
     </span>
 </span>

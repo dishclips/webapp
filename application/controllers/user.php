@@ -32,8 +32,19 @@ class User extends CI_Controller {
                         $data['num_clips'] = !empty($user_profile_data['num_clips']) ? $user_profile_data['num_clips'] : 0;
                         $data['points'] = !empty($user_profile_data['points']) ? $user_profile_data['points'] : 0;
                         $data['clips_list'] = !empty($user_clips_data['clips']) ? $user_clips_data['clips'] : "";
-                        
+                        $kitchen_list = array();
+			
+			////
+			foreach($data['clips_list'] as $clip){
+				if($clip['restaurant_name'] == $name ."'s Kitchen"){
+					array_push($kitchen_list, $clip); //initialize kitchen clips
+				}
+			}
+			////
 			//print_r($user_clips_data);
+			
+			$data['kitchen_list'] = $kitchen_list;
+			
 			$this->template->set('title', 'DishClips &raquo; ' . $name);
 			$this->template->load('template', 'user', $data);
 		} else{

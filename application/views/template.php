@@ -3,9 +3,15 @@
 <head>
 	<title><?= $title?></title>	
 	
+<<<<<<< HEAD
 	<link href="<?php echo site_url('bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
 	<link href="<?php echo site_url('bootstrap/css/font-awesome.min.css');?>" rel="stylesheet">
 	<link href="<?php echo site_url('bootstrap/css/custom.css');?>" rel="stylesheet">
+=======
+	<link href="<?= site_url('bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
+	<link href="<?= site_url('bootstrap/css/font-awesome.min.css');?>" rel="stylesheet">
+	<link href="<?= site_url('/bootstrap/css/custom.css');?>" rel="stylesheet">
+>>>>>>> 5ac900d0bcc4d9996b2ae96f5212299e9d734e74
 	
 	<script src="<?php echo site_url('bootstrap/docs/assets/js/jquery-1.7.1.min.js');?>"></script> <!--jQuery-->	
 	<script src="<?php echo site_url('bootstrap/js/bootstrap-modal.js')?>"></script>
@@ -169,6 +175,13 @@
 
 </script>
 
+<<<<<<< HEAD
 <script src="<?php echo site_url('bootstrap/js/bootstrap-typeahead.js')?>"></script>
 <script src="<?php echo site_url('js/categories.js')?>"></script>
 <script src="<?php echo site_url('js/javascript.js')?>"></script>
+=======
+<script src="<?= site_url('bootstrap/js/bootstrap-typeahead.js')?>"></script>
+<script src="<?= site_url('js/categories.js')?>"></script>
+<script src="<?= site_url('js/javascript.js')?>"></script>
+<script src="<?= site_url('bootstrap/modals.php')?>"></script>
+>>>>>>> 5ac900d0bcc4d9996b2ae96f5212299e9d734e74
